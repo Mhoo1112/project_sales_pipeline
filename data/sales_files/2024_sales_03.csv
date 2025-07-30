@@ -1,0 +1,2 @@
+OrderID,OrderDate,Customer_ID,Product_ID,Amount_USD
+1005,2024-05-04,C004,P05,150

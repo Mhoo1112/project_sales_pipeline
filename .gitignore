@@ -1,0 +1,10 @@
+.env
+# PyCharm
+.idea/
+
+# Python cache
+__pycache__/
+
+# Output and sensitive files
+output/
+config/service_account.json
