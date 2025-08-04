@@ -1,0 +1,3 @@
+order_id,order_date,customer_id,product_id,amount_usd
+1001,2024-05-01,C001,P01,120
+1002,2024-05-01,C002,,75

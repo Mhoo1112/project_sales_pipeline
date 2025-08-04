@@ -1,0 +1,7 @@
+# ไฟล์ที่ไม่ควรถูก track โดย Git
+.env
+*.log
+.venv/
+output/
+config/
+
