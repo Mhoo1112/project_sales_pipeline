@@ -3,3 +3,4 @@
 บรรทัดฝึกซ้อม git diff
 ข้อความใหม่จาก feature-hello
 merge แบบกราฟแตก
+main: เวอร์ชันจาก main
