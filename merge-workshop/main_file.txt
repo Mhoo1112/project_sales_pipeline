@@ -1,1 +1,2 @@
 version = "conflict-main"
+version = "conflict-feature"
