@@ -4,3 +4,4 @@
 ข้อความใหม่จาก feature-hello
 merge แบบกราฟแตก
 main: เวอร์ชันจาก main
+branch: เวอร์ชันจาก conflict-branch
