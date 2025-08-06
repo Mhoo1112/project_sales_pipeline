@@ -1,4 +1,6 @@
 # ไฟล์ที่ไม่ควรถูก track โดย Git
+__pycache__/
+*.pyc
 .env
 *.log
 .venv/

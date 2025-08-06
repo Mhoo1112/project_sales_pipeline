@@ -32,7 +32,7 @@ def upload_to_gcs():
     if not files:
         raise FileNotFoundError("❌ ไม่พบไฟล์ที่ขึ้นต้นด้วย final_report และลงท้าย .csv")
 
-    file_name = sorted(files)[-1]  # หรือใช้ files[0] ก็ได้
+    file_name = sorted(files)[-1]
     local_file_path = os.path.join(path_file_output, file_name)
 
     # สร้าง client จาก credentials

@@ -14,13 +14,13 @@ def extract_mysql():
     dotenv_path = os.path.join(os.path.dirname(__file__), "..", "config", ".env")
     dotenv.load_dotenv(dotenv_path)
 
-    # 📈 เชื่อมต่อเข้ากับ MySQL
+    # เชื่อมต่อเข้ากับ MySQL
     host = os.getenv("MYSQL_HOST")
     port = os.getenv("MYSQL_PORT")
     database = os.getenv("MYSQL_DATABASE")
     username = os.getenv("MYSQL_USER")
     password = os.getenv("MYSQL_PASSWORD")
-    # 📈 สร้าง connection string
+    # สร้าง connection string
     engine = sqlalchemy.create_engine(
         f"mysql+pymysql://{username}:{password}@{host}:{port}/{database}"
     )
@@ -45,7 +45,7 @@ def extract_mysql():
     print(query_df.dtypes)
 
     try:
-        # 📈 บันทึกข้อมูลลงเป็นไฟล์ CSV และ parquet
+        # บันทึกข้อมูลลงเป็นไฟล์ CSV และ parquet
         output_path = os.path.join(os.path.dirname(__file__), "..", "output", )
         os.makedirs(output_path, exist_ok=True)
 
