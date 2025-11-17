@@ -1,13 +1,3 @@
-import sys
-import os
-
-# หา Directory ที่ไฟล์ DAG ปัจจุบันอยู่ (เช่น /opt/airflow/dags)
-DAG_FOLDER = os.path.dirname(os.path.abspath(__file__))
-
-# เพิ่ม Directory นี้เข้าไปใน Python Path เป็นอันดับแรก
-if DAG_FOLDER not in sys.path:
-    sys.path.insert(0, DAG_FOLDER)
-
 from airflow import DAG
 from airflow.decorators import task
 from datetime import datetime
@@ -28,12 +18,11 @@ from scripts.upload_to_gcs import upload_to_gcs
 # ส่งเมล
 from scripts.send_email_report import send_email_report
 # รวมข้อมูล upload_to_bq
-from scripts.load_to_bigquery import load_to_bigquery
 
-with DAG("etl_pipeline_dag",
+with DAG("etl_pipeline_01",
          description="ETL pipeline: CSV + API + MySQL → Final Report",
          start_date=datetime(2024, 1, 1),
-         schedule_interval=None,
+         schedule='@hourly',
          catchup=False,
          tags=["etl", "project-sales"]) as dag:
 
@@ -44,7 +33,6 @@ with DAG("etl_pipeline_dag",
     transform_mysql_data = task(transform_mysql_data)
     transform_final_report = task(transform_final_report)
     upload_to_gcs = task(upload_to_gcs)
-    load_to_bigquery = task(load_to_bigquery)
     send_email_report = task(send_email_report)
 
     # ============================================================
@@ -60,11 +48,10 @@ with DAG("etl_pipeline_dag",
 
 
     upload_to_gcs = upload_to_gcs()
-    load_to_bigquery = load_to_bigquery()
     send_email_report = send_email_report()
 
     # -------------------------------------------------------------
     # กำหนด Dependencies
     # -------------------------------------------------------------
 
-    final_report_df >> [upload_to_gcs, load_to_bigquery] >> send_email_report
+    final_report_df >> upload_to_gcs >> send_email_report
